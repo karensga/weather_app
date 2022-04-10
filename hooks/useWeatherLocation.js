@@ -1,32 +1,25 @@
 import { useEffect, useState, useContext } from 'react'
 import { getLocation } from '../services/location'
-import { CityContext } from '../context/CityContext'
+import CityContext  from '../context/CityContext'
 
-export const useWeatherLocation = (/* { location } = { location:  } */) => {
+export const useWeatherLocation = () => {
 
+    const {city, setCity} = useContext(CityContext)
     const [weatherLocation, setWeatherLocation] = useState()
     const [loading, setLoading] = useState(false)
-    const [location, setLocation] = useState('368148')
-    const city = useContext(CityContext)
-
-
-    useEffect(() => {
-
-        setLocation(city?.city)
-    },[city])
 
     useEffect(() => {
         setLoading(true)
-        getLocation({ location })
+        getLocation({ location:city })  
             .then(res => {
                 setWeatherLocation(res)
                 setLoading(false)
             })
             .catch(e => console.log(e))
-    }, [location])
+    }, [city])
 
 
-    return { weatherLocation, loading }
+    return { weatherLocation, loading, setCity }
 
 }
 

@@ -15,8 +15,8 @@ import lc from '../public/LightCloud.png'
 import c from '../public/Clear.png'
 
 
-const Main = ({ openSearch, weatherLocation, loading }) => {
-    /* const { weatherLocation, loading } = useWeatherLocation() */
+const Main = ({ openSearch }) => {
+    const { weatherLocation, loading } = useWeatherLocation()
 
     const imageOfDay = (condition) => {
         const image = {

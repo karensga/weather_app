@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react'
 import { useSearchLocation } from '../hooks/useSearchLocation'
-import { CityContext } from '../context/CityContext'
+import CityContext from '../context/CityContext'
 
 const SearchLocation = ({ closeSearch }) => {
 
@@ -14,14 +14,14 @@ const SearchLocation = ({ closeSearch }) => {
         const dataToObject = Object.fromEntries(data)
         setKeyword(dataToObject.search)
     }
-console.log(city)
+
     const selectCity = (city) => {
-        setCity(`${city.woeid}`)
+        setCity(city.woeid)
         closeSearch()
     }
 
     return (
-        <div className="bg-primary sm:w-4/12 lg:w-3/12 px-6 pt-6">
+        <div className="bg-primary sm:w-4/12 lg:w-3/12 px-6 pt-6 overflow-auto">
             <form className="flex h-12 mt-10" onSubmit={handleSubmit}>
                 <input type="text" placeholder="search location" className="text-white px-3 focus:outline-none bg-transparent border-white border placeholder-gray-100 w-7/12" name="search" />
                 <button type="submit" className="bg-indigo-600 text-white w-4/12 px-3 ml-auto text-white" >Search</button>
